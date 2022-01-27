@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Algorand NFT Trait Stats</h1>
+
+<h1> Tax Tracker </h1>
+Swapping like crazy? No biggie. I got you.
+
+This software will use your wallet address and scrape your entire transaction history up to present day. From this I will compile a history of your swap transactions to determine how much of each pair was exchanged in the swap. It separates fees from using the algorand blockchain (0.001A) and fees from interacting with applications (0.002A). Redeemed balances are treated separately in their own file, along with stake/claim operations. In the future, NFTs will also be handled. These transaction are more subtle than swaps. 
+
+<h4> Example Data File </h4>
+For each swap/pair the following information is recorded:
+<ul>
+  <li> Date and time of the transaction
+  <li> Asset 1 swap amount 
+  <li> Asset 2 swap amount 
+  <li> Transaction fee
+  <li> Application fee
+  <li> Price of ALGO in USD on the date of the transaction
+</ul>
+
+The following convetion is used to assign postive or negative signs:
+
+<ul>
+<li>If your wallet is sending the asset, it gets a  negative sign.
+<li>If your wallet is receiving the asset, it gets a positive sign. 
+</ul>
+
+<p>Example: <br>
+You swap 20A for 20,000 DEGEN. The 20A are leaving your wallet, so it is recorded as -20. The 20,000 DEGEN are being sent to your wallet, so it is recorded as 20,000 DEGEN.
+</p>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>transaction_fee</th>
+      <th>STKE</th>
+      <th>ALGO</th>
+      <th>app_fee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2022-01-20 11:11:02</th>
+      <td>-0.001</td>
+      <td>3358.66</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-20 13:04:02</th>
+      <td>-0.001</td>
+      <td>2603.09</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-20 13:07:02</th>
+      <td>-0.001</td>
+      <td>57.29</td>
+      <td>0.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-21 13:18:27</th>
+      <td>-0.001</td>
+      <td>2379.90</td>
+      <td>-25.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-21 13:18:54</th>
+      <td>-0.001</td>
+      <td>35.15</td>
+      <td>0.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-21 19:50:33</th>
+      <td>-0.001</td>
+      <td>1479.15</td>
+      <td>-15.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-21 19:51:08</th>
+      <td>-0.001</td>
+      <td>7.43</td>
+      <td>0.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-22 10:33:18</th>
+      <td>-0.001</td>
+      <td>2317.20</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-22 10:33:44</th>
+      <td>-0.001</td>
+      <td>11.64</td>
+      <td>0.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-22 16:50:59</th>
+      <td>-0.001</td>
+      <td>2468.33</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-24 10:38:12</th>
+      <td>-0.001</td>
+      <td>1482.16</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-24 10:38:38</th>
+      <td>-0.001</td>
+      <td>29.86</td>
+      <td>0.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-24 16:32:01</th>
+      <td>-0.001</td>
+      <td>1578.59</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-24 16:32:27</th>
+      <td>-0.001</td>
+      <td>7.93</td>
+      <td>0.0</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <th>2022-01-25 07:49:45</th>
+      <td>-0.001</td>
+      <td>1862.22</td>
+      <td>-20.0</td>
+      <td>-0.002</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h3>Signup</h3>
+<p>Use the Google form below to register to receive your transaction history in a format that is suitable for tax purposes. For 25A, you will receive a ZIP file containing a CSV for each ALGO/ASA pair you have swapped from Jan 1st, 2021 to Dec 31st, 2021 (yes, I know, Algorand didnt even have a dex until like September lol). </p>
+
+<p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLq60xKVaMW6Br70z6TLKbAdC2NdTG3CBeBc5pfhPn3Dz1-g/viewform?embedded=true" width="640" height="705" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
+
+
+
+</body>
+</html>
