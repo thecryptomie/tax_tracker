@@ -1,37 +1,368 @@
 <!DOCTYPE html>
 <html>
 <body>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
 
-<h1>Algorand NFT Trait Stats</h1>
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+
 
 <h1> Tax Tracker </h1>
-Swapping like crazy? No biggie. I got you.
-
-This software will use your wallet address and scrape your entire transaction history up to present day. From this I will compile a history of your swap transactions to determine how much of each pair was exchanged in the swap. It separates fees from using the algorand blockchain (0.001A) and fees from interacting with applications (0.002A). Redeemed balances are treated separately in their own file, along with stake/claim operations. In the future, NFTs will also be handled. These transaction are more subtle than swaps. 
-
-<h4> Example Data File </h4>
-For each swap/pair the following information is recorded:
-<ul>
-  <li> Date and time of the transaction
-  <li> Asset 1 swap amount 
-  <li> Asset 2 swap amount 
-  <li> Transaction fee
-  <li> Application fee
-  <li> Price of ALGO in USD on the date of the transaction
-</ul>
-
-The following convetion is used to assign postive or negative signs:
-
-<ul>
-<li>If your wallet is sending the asset, it gets a  negative sign.
-<li>If your wallet is receiving the asset, it gets a positive sign. 
-</ul>
-
-<p>Example: <br>
-You swap 20A for 20,000 DEGEN. The 20A are leaving your wallet, so it is recorded as -20. The 20,000 DEGEN are being sent to your wallet, so it is recorded as 20,000 DEGEN.
+<p>Swapping like crazy? No biggie. I got you. For a small fee of 15A, I will download your transaction history from <a href="https://algoexplorer.io/">algoexplorer.io</a>. I will then analyze your transaction history and distill that data into a form convenient for tax purposes. <b> Note, this data will not contain your actual taxes. Instead, it contains information you pertinent to calculating your loss or gain incurring through swapping on the Algorand blockchain. </b>
 </p>
 
-<table border="1" class="dataframe">
+<p>
+Currently, NFTs are supported in an experimental manner. Due to the nature of the interaction with the escrow accounts that act as the intermediary between the buyer and seller, there are some transactions that do not contain your wallet address. These ones only contain the escrow and the buyer or seller, depending on whether or not you have bought a piece from them or sold a piece to them. This makes them a pain to track down and it is hard to do so reliably. 
+</p>
+
+<h2>Information</h2>
+
+For each swap/pair the following information is recorded:
+<ul>
+  <li> Date and time of the transaction </li>
+  <li> Asset 1 swap amount </li>
+  <li> Asset 2 swap amount </li>
+  <li> Transaction fee </li>
+  <li> Application fee </li>
+  <li> Price of ALGO in USD on the date of the transaction </li>
+</ul>
+The price of ALGO reported for a given day is computed by taking the average of the opening and closing price of ALGO for the given trading day. 
+
+The following convetion is used to assign postive or negative signs to transaction data:
+
+<ul>
+<li>If your wallet is sending the asset, it gets a  negative sign. </li>
+<li>If your wallet is receiving the asset, it gets a positive sign. </li>
+</ul>
+
+This makes it easy to quickly identify your buy and sell orders. For example, you swap 20A for 20,000 DEGEN. The 20A are leaving your wallet, so it is recorded as -20. The 20,000 DEGEN are being sent to your wallet, so it is recorded as +20,000 DEGEN.
+
+<h2>Ok, so what will you receive?</h2>
+For 15A, you will you will receive a zip file that contains the following data,
+<ul>
+  <li> Swap transaction data 
+  	<ul>
+  		<li>A single CSV containing all of your swap transaction data combined</li>
+  		<li> CSVs for each individual swap pair (e.g. ALGO/STKE, ALGO/DEFLY) </li>
+  		<li> An excel spreadsheet that has an individual worksheet for each swap pair. This is just created from the list of CSVs in the previous bullet. </li>
+  	</ul>
+  </li>
+  <li> NFT transaction data (Experimental)
+  	<ul>
+  		<li>A single CSV containing all of your NFT transaction data combined</li>
+	  	<li> CSVs for each NFT that will show how much you paid for each NFT</li>
+	  	<li> An excel spreadsheet that has an individual worksheet for each NFT. Again, this is created for the CSVs. </li>
+	 </ul>
+  </li>
+  <li> "Single" transaction data, i.e. transaction that are not part of a group 
+  	<ul>
+  		<li>A single CSV containing all of your single transaction data combined</li>
+  		<li>CSVs for each asset with transactions that do not contain a group id. This includes things like opting in, sending an asset directly to someone or receiving an asset directly from someone. </li>
+  		<li>An excel spreadsheet that that has an individual worksheet for each asset.</li>
+  	</ul>
+
+  </li>
+  <li>Compiled Tax Data for Swaps
+  		<ul>
+  			<li>Two CSVs for each swap pair. One csv will contain all transactions, including those related to application calls. The other will contain a subset of that information that makes the swap exchange more clear. </li>
+  			<li>An excel spreadsheet that that has an individual worksheet for each asset.</li>
+  			<li>These data files will be present for you full transaction history, as well as a subset spanning 2021 to 2022 only. </li>
+  		</ul>
+  </li>
+
+</ul>
+
+<h3>Example Output Files</h3>
+
+<button type="button" class="collapsible">ALGO/SMILE Swap Pair</button>
+<div class="content">
+	<p> This table is an example of the compiled tax data that contains only a subset of the full history.
+	<table border="1" class="dataframe">
+	  <thead>
+	    <tr style="text-align: right;">
+	      <th></th>
+	      <th>SMILE</th>
+	      <th>ALGO</th>
+	      <th>algo_price_usd</th>
+	      <th>app_fee</th>
+	      <th>transaction_fee</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th>2021-12-28 08:51:21</th>
+	      <td>24359.940673</td>
+	      <td>-25.000000</td>
+	      <td>1.565855</td>
+	      <td>-0.002</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:52:44</th>
+	      <td>142.076124</td>
+	      <td>0.000000</td>
+	      <td>1.565855</td>
+	      <td>-0.002</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-04 10:44:17</th>
+	      <td>-24502.016797</td>
+	      <td>47.711075</td>
+	      <td>1.730640</td>
+	      <td>-0.002</td>
+	      <td>-0.001</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+
+<br>
+<p></p>
+
+<button type="button" class="collapsible">ALGO/SMILE Swap Pair Full</button>
+<div class="content">
+	<p> This table is an example of the compiled tax data that contains the additional transacttions relevant to the application call. 
+	<table border="1" class="dataframe">
+	  <thead>
+	    <tr style="text-align: right;">
+	      <th></th>
+	      <th>SMILE</th>
+	      <th>ALGO</th>
+	      <th>algo_price_usd</th>
+	      <th>app_call</th>
+	      <th>fee</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th>2021-12-28 08:51:21</th>
+	      <td>24359.940673</td>
+	      <td>0.000000</td>
+	      <td>1.565855</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:51:21</th>
+	      <td>0.000000</td>
+	      <td>-25.000000</td>
+	      <td>1.565855</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:51:21</th>
+	      <td>0.000000</td>
+	      <td>-0.002000</td>
+	      <td>1.565855</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:51:21</th>
+	      <td>0.000000</td>
+	      <td>0.000000</td>
+	      <td>1.565855</td>
+	      <td>True</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:52:44</th>
+	      <td>142.076124</td>
+	      <td>0.000000</td>
+	      <td>1.565855</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:52:44</th>
+	      <td>0.000000</td>
+	      <td>-0.002000</td>
+	      <td>1.565855</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-28 08:52:44</th>
+	      <td>0.000000</td>
+	      <td>0.000000</td>
+	      <td>1.565855</td>
+	      <td>True</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-04 10:44:17</th>
+	      <td>0.000000</td>
+	      <td>47.711075</td>
+	      <td>1.730640</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-04 10:44:17</th>
+	      <td>-24502.016797</td>
+	      <td>0.000000</td>
+	      <td>1.730640</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-04 10:44:17</th>
+	      <td>0.000000</td>
+	      <td>-0.002000</td>
+	      <td>1.730640</td>
+	      <td>False</td>
+	      <td>-0.001</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-04 10:44:17</th>
+	      <td>0.000000</td>
+	      <td>0.000000</td>
+	      <td>1.730640</td>
+	      <td>True</td>
+	      <td>-0.001</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+
+<p></p>
+
+<button type="button" class="collapsible">RCOIN/ALGO LP Pool Transaction</button>
+<div class="content">
+	<p> This table is an example of the output compiled for LP transactions. </p>
+	<table border="1" class="dataframe">
+	  <thead>
+	    <tr style="text-align: right;">
+	      <th></th>
+	      <th>TM1POOL</th>
+	      <th>fee</th>
+	      <th>app_call</th>
+	      <th>algo_price_usd</th>
+	      <th>ALGO</th>
+	      <th>RCOIN</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th>2021-12-31 08:43:27</th>
+	      <td>2.890853</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.694347</td>
+	      <td>0.000000</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-31 08:43:27</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.694347</td>
+	      <td>-10.000000</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-31 08:43:27</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.694347</td>
+	      <td>0.000000</td>
+	      <td>-8745.66</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-31 08:43:27</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.694347</td>
+	      <td>-0.002000</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2021-12-31 08:43:27</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>True</td>
+	      <td>1.694347</td>
+	      <td>0.000000</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-02 09:11:04</th>
+	      <td>-2.905380</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.708010</td>
+	      <td>0.000000</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-02 09:11:04</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.708010</td>
+	      <td>7.985857</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-02 09:11:04</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.708010</td>
+	      <td>0.000000</td>
+	      <td>10907.93</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-02 09:11:04</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>False</td>
+	      <td>1.708010</td>
+	      <td>-0.003000</td>
+	      <td>0.00</td>
+	    </tr>
+	    <tr>
+	      <th>2022-01-02 09:11:04</th>
+	      <td>0.000000</td>
+	      <td>-0.001</td>
+	      <td>True</td>
+	      <td>1.708010</td>
+	      <td>0.000000</td>
+	      <td>0.00</td>
+	    </tr>
+	  </tbody>
+	</table>
+</div>
+<!-- <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -148,15 +479,51 @@ You swap 20A for 20,000 DEGEN. The 20A are leaving your wallet, so it is recorde
       <td>-0.002</td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
+<h2>Terms and Conditions</h2>
+<p style="color:red">
+<b>
+I provide this service as is with no gaurantees for completeness or correctness. I assume no liability in the reporting of your taxes to the federal government and you waive all rights to pursue any action regarding the services provided. </b>
+</p>
 
-<h3>Signup</h3>
-<p>Use the Google form below to register to receive your transaction history in a format that is suitable for tax purposes. For 25A, you will receive a ZIP file containing a CSV for each ALGO/ASA pair you have swapped from Jan 1st, 2021 to Dec 31st, 2021 (yes, I know, Algorand didnt even have a dex until like September lol). </p>
+<h2>Signup</h2>
+<p>Use the Google form below to register to receive your compiled transaction history. </p>
 
 <p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLq60xKVaMW6Br70z6TLKbAdC2NdTG3CBeBc5pfhPn3Dz1-g/viewform?embedded=true" width="640" height="705" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
 
 
 
+
+
+
+<!-- <h2>Collapsibles</h2>
+
+<p>A Collapsible:</p>
+<button type="button" class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div> -->
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+
 </body>
 </html>
+
