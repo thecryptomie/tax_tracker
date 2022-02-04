@@ -1,529 +1,270 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
-<body>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-.collapsible {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
+	<head>
+		<title>TheCryptomie</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-.active, .collapsible:hover {
-  background-color: #555;
-}
+		<!-- Header -->
+			<div id="header">
 
-.content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-</style>
-</head>
+				<div class="top">
 
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/custom_APE.png" alt="" /></span>
+							<h1 id="title">thecryptomie</h1>
+							<p>Nerd</p>
+						</div>
 
-<h1> Tax Tracker </h1>
-<p>Swapping like crazy? No biggie. I got you. For a small fee of 15A, I will download your transaction history from <a href="https://algoexplorer.io/">algoexplorer.io</a>. I will then analyze your transaction history and distill that data into a form convenient for tax purposes. <b> Note, this data will not contain your actual taxes. Instead, it contains information you pertinent to calculating your loss or gain incurring through swapping on the Algorand blockchain. </b>
-</p>
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Home</span></a></li>
+								<li><a href="#tool_info" id="portfolio-link"><span class="icon solid fa-th">Tool Info</span></a></li>
+								<!-- <li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li> -->
+								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Signup</span></a></li>
+							</ul>
+						</nav>
 
-<p>
-Currently, NFTs are supported in an experimental manner. Due to the nature of the interaction with the escrow accounts that act as the intermediary between the buyer and seller, there are some transactions that do not contain your wallet address. These ones only contain the escrow and the buyer or seller, depending on whether or not you have bought a piece from them or sold a piece to them. This makes them a pain to track down and it is hard to do so reliably. 
-</p>
+				</div>
 
-<h2>Information</h2>
+				<div class="bottom">
 
-For each swap/pair the following information is recorded:
-<ul>
-  <li> Date and time of the transaction </li>
-  <li> Asset 1 swap amount </li>
-  <li> Asset 2 swap amount </li>
-  <li> Transaction fee </li>
-  <li> Application fee </li>
-  <li> Price of ALGO in USD on the date of the transaction </li>
-</ul>
-The price of ALGO reported for a given day is computed by taking the average of the opening and closing price of ALGO for the given trading day. 
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+							<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
 
-The following convetion is used to assign postive or negative signs to transaction data:
+				</div>
 
-<ul>
-<li>If your wallet is sending the asset, it gets a  negative sign. </li>
-<li>If your wallet is receiving the asset, it gets a positive sign. </li>
-</ul>
+			</div>
 
-This makes it easy to quickly identify your buy and sell orders. For example, you swap 20A for 20,000 DEGEN. The 20A are leaving your wallet, so it is recorded as -20. The 20,000 DEGEN are being sent to your wallet, so it is recorded as +20,000 DEGEN.
+		<!-- Main -->
+			<div id="main">
 
-<h2>Ok, so what will you receive?</h2>
-For 15A, you will you will receive a zip file that contains the following data,
-<ul>
-  <li> Swap transaction data 
-  	<ul>
-  		<li>A single CSV containing all of your swap transaction data combined</li>
-  		<li> CSVs for each individual swap pair (e.g. ALGO/STKE, ALGO/DEFLY) </li>
-  		<li> An excel spreadsheet that has an individual worksheet for each swap pair. This is just created from the list of CSVs in the previous bullet. </li>
-  	</ul>
-  </li>
-  <li> NFT transaction data (Experimental)
-  	<ul>
-  		<li>A single CSV containing all of your NFT transaction data combined</li>
-	  	<li> CSVs for each NFT that will show how much you paid for each NFT</li>
-	  	<li> An excel spreadsheet that has an individual worksheet for each NFT. Again, this is created for the CSVs. </li>
-	 </ul>
-  </li>
-  <li> "Single" transaction data, i.e. transaction that are not part of a group 
-  	<ul>
-  		<li>A single CSV containing all of your single transaction data combined</li>
-  		<li>CSVs for each asset with transactions that do not contain a group id. This includes things like opting in, sending an asset directly to someone or receiving an asset directly from someone. </li>
-  		<li>An excel spreadsheet that that has an individual worksheet for each asset.</li>
-  	</ul>
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
 
-  </li>
-  <li>Compiled Tax Data for Swaps
-  		<ul>
-  			<li>Two CSVs for each swap pair. One csv will contain all transactions, including those related to application calls. The other will contain a subset of that information that makes the swap exchange more clear. </li>
-  			<li>An excel spreadsheet that that has an individual worksheet for each asset.</li>
-  			<li>These data files will be present for you full transaction history, as well as a subset spanning 2021 to 2022 only. </li>
-  		</ul>
-  </li>
+							<header>
+								<h2 class="alt">Tax Tracker</h2>
+								<p>A simple service to designed to simplify<br />
+								data aggregation for tax purposes.</p>
+							</header>
 
-</ul>
+						<!-- 	<footer>
+								<a href="#portfolio" class="button scrolly"></a>
+							</footer> -->
+							<!-- 		<article class="item">
+										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<header>
+											<h3>Orci Convallis</h3>
+										</header>
+									</article> -->
+						</div>
+					</section>
 
-<h3>Example Output Files</h3>
+				<!-- Portfolio -->
+					<section id="tool_info" class="two">
+						<div class="container">
 
-<button type="button" class="collapsible">ALGO/SMILE Swap Pair</button>
-<div class="content">
-	<p> This table is an example of the compiled tax data that contains only a subset of the full history.
-	<table border="1" class="dataframe">
-	  <thead>
-	    <tr style="text-align: right;">
-	      <th></th>
-	      <th>SMILE</th>
-	      <th>ALGO</th>
-	      <th>algo_price_usd</th>
-	      <th>app_fee</th>
-	      <th>transaction_fee</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th>2021-12-28 08:51:21</th>
-	      <td>24359.940673</td>
-	      <td>-25.000000</td>
-	      <td>1.565855</td>
-	      <td>-0.002</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:52:44</th>
-	      <td>142.076124</td>
-	      <td>0.000000</td>
-	      <td>1.565855</td>
-	      <td>-0.002</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-04 10:44:17</th>
-	      <td>-24502.016797</td>
-	      <td>47.711075</td>
-	      <td>1.730640</td>
-	      <td>-0.002</td>
-	      <td>-0.001</td>
-	    </tr>
-	  </tbody>
-	</table>
-</div>
+							<header>
+								<h2>Tool Info</h2>
+							</header>
 
-<br>
-<p></p>
+							<p>Swapping like crazy? No biggie. I got you. For a fee of 20A, I will compile a history of all transactions associated your alogrand wallet address. This data can then be used to determine things like your cost basis, capital gain/loss associated with a given swap pair, gain/loss from NFT sales, or gain/loss from LP. </b>
+							</p>
+<!-- 
+							<div class="row">
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="images/mngo_sell_example.png" class="image fit"><img src="images/mngo_sell_example.png" alt="" /></a>
+										<header>
+											<h3>Swap History</h3>
+										</header>
+									</article>
+									<article class="item">
+										<a href="images/akta_lp_pool_example.png" class="image fit"><img src="images/akta_lp_pool_example.png" alt="" /></a>
+										<header>
+					
+											<h3>LP History</h3>
+										</header>
+									</article>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="images/aowl_sell_example.png" class="image fit"><img src="images/aowl_sell_example.png" alt="" /></a>
+										<header>
+											<h3>NFT History</h3>
+										</header>
+									</article>
 
-<button type="button" class="collapsible">ALGO/SMILE Swap Pair Full</button>
-<div class="content">
-	<p> This table is an example of the compiled tax data that contains the additional transacttions relevant to the application call. 
-	<table border="1" class="dataframe">
-	  <thead>
-	    <tr style="text-align: right;">
-	      <th></th>
-	      <th>SMILE</th>
-	      <th>ALGO</th>
-	      <th>algo_price_usd</th>
-	      <th>app_call</th>
-	      <th>fee</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th>2021-12-28 08:51:21</th>
-	      <td>24359.940673</td>
-	      <td>0.000000</td>
-	      <td>1.565855</td>
-	      <td>False</td>
-	      <td>-0.001</td>
+									<article class="item">
+										<a href="images/yldy_staking_operations.png" class="image fit"><img src="images/yldy_staking_operations.png" alt="" /></a>
+										<header>
+											<h3>Staking History</h3>
+										</header>
+									</article>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="images/stke_claiming_history.png" class="image fit"><img src="images/stke_claiming_history.png" alt="" /></a>
+										<header>
+											<h3>Claiming History</h3>
+										</header>
+									</article>
 
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:51:21</th>
-	      <td>0.000000</td>
-	      <td>-25.000000</td>
-	      <td>1.565855</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:51:21</th>
-	      <td>0.000000</td>
-	      <td>-0.002000</td>
-	      <td>1.565855</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:51:21</th>
-	      <td>0.000000</td>
-	      <td>0.000000</td>
-	      <td>1.565855</td>
-	      <td>True</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:52:44</th>
-	      <td>142.076124</td>
-	      <td>0.000000</td>
-	      <td>1.565855</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:52:44</th>
-	      <td>0.000000</td>
-	      <td>-0.002000</td>
-	      <td>1.565855</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-28 08:52:44</th>
-	      <td>0.000000</td>
-	      <td>0.000000</td>
-	      <td>1.565855</td>
-	      <td>True</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-04 10:44:17</th>
-	      <td>0.000000</td>
-	      <td>47.711075</td>
-	      <td>1.730640</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-04 10:44:17</th>
-	      <td>-24502.016797</td>
-	      <td>0.000000</td>
-	      <td>1.730640</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-04 10:44:17</th>
-	      <td>0.000000</td>
-	      <td>-0.002000</td>
-	      <td>1.730640</td>
-	      <td>False</td>
-	      <td>-0.001</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-04 10:44:17</th>
-	      <td>0.000000</td>
-	      <td>0.000000</td>
-	      <td>1.730640</td>
-	      <td>True</td>
-	      <td>-0.001</td>
-	    </tr>
-	  </tbody>
-	</table>
-</div>
+								</div>
+							</div> -->
 
-<p></p>
+						</div>
+					</section>
 
-<button type="button" class="collapsible">RCOIN/ALGO LP Pool Transaction</button>
-<div class="content">
-	<p> This table is an example of the output compiled for LP transactions. </p>
-	<table border="1" class="dataframe">
-	  <thead>
-	    <tr style="text-align: right;">
-	      <th></th>
-	      <th>TM1POOL</th>
-	      <th>fee</th>
-	      <th>app_call</th>
-	      <th>algo_price_usd</th>
-	      <th>ALGO</th>
-	      <th>RCOIN</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th>2021-12-31 08:43:27</th>
-	      <td>2.890853</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.694347</td>
-	      <td>0.000000</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-31 08:43:27</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.694347</td>
-	      <td>-10.000000</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-31 08:43:27</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.694347</td>
-	      <td>0.000000</td>
-	      <td>-8745.66</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-31 08:43:27</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.694347</td>
-	      <td>-0.002000</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2021-12-31 08:43:27</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>True</td>
-	      <td>1.694347</td>
-	      <td>0.000000</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-02 09:11:04</th>
-	      <td>-2.905380</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.708010</td>
-	      <td>0.000000</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-02 09:11:04</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.708010</td>
-	      <td>7.985857</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-02 09:11:04</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.708010</td>
-	      <td>0.000000</td>
-	      <td>10907.93</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-02 09:11:04</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>False</td>
-	      <td>1.708010</td>
-	      <td>-0.003000</td>
-	      <td>0.00</td>
-	    </tr>
-	    <tr>
-	      <th>2022-01-02 09:11:04</th>
-	      <td>0.000000</td>
-	      <td>-0.001</td>
-	      <td>True</td>
-	      <td>1.708010</td>
-	      <td>0.000000</td>
-	      <td>0.00</td>
-	    </tr>
-	  </tbody>
-	</table>
-</div>
-<!-- <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>transaction_fee</th>
-      <th>STKE</th>
-      <th>ALGO</th>
-      <th>app_fee</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2022-01-20 11:11:02</th>
-      <td>-0.001</td>
-      <td>3358.66</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-20 13:04:02</th>
-      <td>-0.001</td>
-      <td>2603.09</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-20 13:07:02</th>
-      <td>-0.001</td>
-      <td>57.29</td>
-      <td>0.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-21 13:18:27</th>
-      <td>-0.001</td>
-      <td>2379.90</td>
-      <td>-25.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-21 13:18:54</th>
-      <td>-0.001</td>
-      <td>35.15</td>
-      <td>0.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-21 19:50:33</th>
-      <td>-0.001</td>
-      <td>1479.15</td>
-      <td>-15.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-21 19:51:08</th>
-      <td>-0.001</td>
-      <td>7.43</td>
-      <td>0.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-22 10:33:18</th>
-      <td>-0.001</td>
-      <td>2317.20</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-22 10:33:44</th>
-      <td>-0.001</td>
-      <td>11.64</td>
-      <td>0.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-22 16:50:59</th>
-      <td>-0.001</td>
-      <td>2468.33</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-24 10:38:12</th>
-      <td>-0.001</td>
-      <td>1482.16</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-24 10:38:38</th>
-      <td>-0.001</td>
-      <td>29.86</td>
-      <td>0.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-24 16:32:01</th>
-      <td>-0.001</td>
-      <td>1578.59</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-24 16:32:27</th>
-      <td>-0.001</td>
-      <td>7.93</td>
-      <td>0.0</td>
-      <td>-0.002</td>
-    </tr>
-    <tr>
-      <th>2022-01-25 07:49:45</th>
-      <td>-0.001</td>
-      <td>1862.22</td>
-      <td>-20.0</td>
-      <td>-0.002</td>
-    </tr>
-  </tbody>
-</table> -->
+				<!-- About Me -->
+					<section id="about" class="three">
+						<div class="container">
 
-<h2>Terms and Conditions</h2>
-<p style="color:red">
-<b>
-I provide this service as is with no gaurantees for completeness or correctness. I assume no liability in the reporting of your taxes to the federal government and you waive all rights to pursue any action regarding the services provided. </b>
-</p>
+							<header>
+								<h2>What you'll get</h2>
+							</header>
 
-<h2>Signup</h2>
-<p>Use the Google form below to register to receive your compiled transaction history. </p>
+							<!-- <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a> -->
 
-<!-- <p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLq60xKVaMW6Br70z6TLKbAdC2NdTG3CBeBc5pfhPn3Dz1-g/viewform?embedded=true" width="640" height="705" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
- -->
+							<p>You will receive your compiled transaction history in two forms; csvs and excel workbooks. You will get one csv for each swap pair (e.g. ALGO/STKE, ALGO/DEGEN), NFT transaction (AGA197/ALGO), and single transactions (e.g. receiving claimed staking rewards from algostake for BIRDS, directly send or receiving ALGO or any ASA). The excel workbooks will be separated by swaps, NFTs, and single transactions. Each workbook will contain a separate spreadsheet for the each pair (see example image below). The main advantage of the excel worksbooks is that they can be viewed in a GUI like <a href="https://www.microsoft.com/en-us/microsoft-365/excel">Microsoft Excel (paid)</a> or <a href="https://www.google.com/sheets/about/">Google Sheets (free)</a>. </p>
+
+							<div class="row">
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="images/mngo_sell_example.png" class="image fit"><img src="images/mngo_sell_example.png" alt="" /></a>
+										<header>
+											<h3>Swap History</h3>
+										</header>
+									</article>
+									<article class="item">
+										<a href="images/akta_lp_pool_example.png" class="image fit"><img src="images/akta_lp_pool_example.png" alt="" /></a>
+										<header>
+					
+											<h3>LP History</h3>
+										</header>
+									</article>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="images/aowl_sell_example.png" class="image fit"><img src="images/aowl_sell_example.png" alt="" /></a>
+										<header>
+											<h3>NFT History</h3>
+										</header>
+									</article>
+									
+									<article class="item">
+										<a href="images/yldy_staking_operations.png" class="image fit"><img src="images/yldy_staking_operations.png" alt="" /></a>
+										<header>
+											<h3>Staking History</h3>
+										</header>
+									</article>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<article class="item">
+										<a href="images/stke_claiming_history.png" class="image fit"><img src="images/stke_claiming_history.png" alt="" /></a>
+										<header>
+											<h3>Claiming History</h3>
+										</header>
+									</article>
+
+								</div>
+							</div>
+						</div>
+					</section>
+					<section id="Terms and Conditions" class="four">
+						<div class="container">
+
+							<header>
+								<h2>Terms and Conditions</h2>
+							</header>
 
 
+							<p style="color:red">
+							<b>
+							I provide this service as is with no gaurantees for completeness or correctness. I assume no liability in the reporting of your taxes to the federal government and you waive all rights to pursue any action regarding the services provided. </b>
+							</p>
+							
+
+						<!-- 	<form method="post" action="mailto:thecryptomie314@gmail.com">
+								<div class="row">
+									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="col-12">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									<div class="col-12">
+										<input type="submit" value="Send Message" />
+									</div>
+								</div>
+							</form> -->
+
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact" class="five">
+						<div class="container">
+
+							<header>
+								<h2>Signup</h2>
+							</header>					
+							<p>Use the Google form below to register to receive your compiled transaction history. </p>
+							<p><iframe src="https://docs.google.com/forms/d/e/1FAIpQLScLq60xKVaMW6Br70z6TLKbAdC2NdTG3CBeBc5pfhPn3Dz1-g/viewform?embedded=true" width="640" height="705" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></p>
 
 
+						<!-- 	<form method="post" action="mailto:thecryptomie314@gmail.com">
+								<div class="row">
+									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="col-12">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									<div class="col-12">
+										<input type="submit" value="Send Message" />
+									</div>
+								</div>
+							</form> -->
 
-<!-- <h2>Collapsibles</h2>
+						</div>
+					</section>
 
-<p>A Collapsible:</p>
-<button type="button" class="collapsible">Open Collapsible</button>
-<div class="content">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div> -->
+			</div>
 
+		<!-- Footer -->
+			<div id="footer">
 
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
-</script>
+			</div>
 
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-</body>
+	</body>
 </html>
-
